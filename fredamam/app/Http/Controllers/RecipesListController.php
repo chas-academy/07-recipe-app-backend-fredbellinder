@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\RecipesList;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Recipe;
-use App\Http\Resources\Recipe as RecipeResource;
 
-class RecipeController extends Controller
+class RecipesListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::paginate(15);
-
-        return RecipeResource::collection($recipes);
+        //
     }
 
     /**
@@ -45,10 +41,10 @@ class RecipeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\RecipesList  $recipesList
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(RecipesList $recipesList)
     {
         //
     }
@@ -56,10 +52,10 @@ class RecipeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\RecipesList  $recipesList
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(RecipesList $recipesList)
     {
         //
     }
@@ -68,10 +64,10 @@ class RecipeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\RecipesList  $recipesList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, RecipesList $recipesList)
     {
         //
     }
@@ -79,10 +75,10 @@ class RecipeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\RecipesList  $recipesList
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(RecipesList $recipesList)
     {
         //
     }

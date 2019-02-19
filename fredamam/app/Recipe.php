@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recipe extends Model
 {
-    // protected $casts = [
+    protected $casts = [
     //     'uri' => 'string',
     //     'label' => 'string',
     //     'image' => 'string',
@@ -14,15 +14,17 @@ class Recipe extends Model
     //     'url' => 'string',
     //     'shareAs' => 'string',
     //     'yield' => 'integer',
-    //     'dietLabels' => 'string',
-    //     'healthLabels' => 'string',
-    //     'ingredientLines' => 'string',
-    //     'ingredients' => 'string',
+        'dietLabels' => 'array',
+        'healthLabels' => 'array',
+        'ingredientLines' => 'array',
+        'ingredients' => 'array',
     //     'calories' => 'float',
-    // ];
-    protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+    ];
+    protected $hidden = [
+        'created_at',
+        'updated_at'
     ];
 
 
