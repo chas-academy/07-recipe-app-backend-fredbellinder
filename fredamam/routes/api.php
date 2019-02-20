@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 
+use App\Http\Resources\RecipeResource;
+use App\Recipe;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,6 +22,7 @@ Route::group(
     function () {
         Route::post('login', 'AuthController@login');
         Route::post('signup', 'AuthController@signup');
+        Route::get('signup/activate/{token}', 'AuthController@signupActivate');
     
         Route::group(
             [
@@ -27,7 +31,12 @@ Route::group(
             function () {
                 Route::get('logout', 'AuthController@logout');
                 Route::get('user', 'AuthController@user');
-                Route::get('recipes', 'RecipeController@index');
+                Route::get(
+                    'recipes',
+                    function () {
+                        return RecipeResource::collection(Recipe::all());
+                    }
+                );
             }
         );
     }
