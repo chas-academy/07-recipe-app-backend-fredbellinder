@@ -41,8 +41,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime'
     ];
 
-    public function lists()
+    public function recipe_lists()
     {
-        return $this->hasMAny(RecipesList::class);
+        return $this->belongsToMany(RecipeList::class);
     }
 }

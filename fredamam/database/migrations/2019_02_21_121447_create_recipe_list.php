@@ -14,7 +14,7 @@ class CreateRecipeList extends Migration
     public function up()
     {
         Schema::create(
-            'recipe_list',
+            'recipe_lists',
             function (Blueprint $table) {
                 $table->integer('user_id')->unsigned();
                 $table->integer('recipe_id')->unsigned();
@@ -23,7 +23,7 @@ class CreateRecipeList extends Migration
                 $table->foreign('user_id')->references('id')->on('users');
                 $table->foreign('recipe_id')->references('id')->on('recipes');
             }
-    );
+        );
     }
 
     /**
@@ -33,6 +33,6 @@ class CreateRecipeList extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recipes_lists');
+        Schema::dropIfExists('recipe_lists');
     }
 }

@@ -38,6 +38,18 @@ Route::group(
                         return RecipeResource::collection(Recipe::paginate(15));
                     }
                 );
+                Route::get(
+                    'recipes/{id}',
+                    function ($id) {
+                        return new RecipeResource(Recipe::find($id));
+                    }
+                );
+                Route::post(
+                    'recipes/{id}',
+                    function ($id) {
+                        return new RecipeResource(Recipe::find($id));
+                    }
+                );
             }
         );
     }
