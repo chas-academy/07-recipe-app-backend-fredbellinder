@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 
-use App\Http\Resources\RecipeResource;
+use App\Http\Resources\Recipe as RecipeResource;
 use App\Recipe;
 
 /*
@@ -17,7 +17,8 @@ use App\Recipe;
 */
 Route::group(
     [
-    'prefix' => 'auth'
+        'middleware' => 'Cors',
+        'prefix' => 'auth'
     ],
     function () {
         Route::post('login', 'AuthController@login');
@@ -34,7 +35,7 @@ Route::group(
                 Route::get(
                     'recipes',
                     function () {
-                        return RecipeResource::collection(Recipe::all());
+                        return RecipeResource::collection(Recipe::paginate(15));
                     }
                 );
             }
