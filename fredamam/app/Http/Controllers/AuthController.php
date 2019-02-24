@@ -32,12 +32,12 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            // 'activation_token' => str_random(60)
+            'activation_token' => str_random(60)
             ]
         );
         $user->save();
 
-        // $user->notify(new SignupActivate($user));
+        $user->notify(new SignupActivate($user));
 
         return response()->json(
             [

@@ -32,10 +32,12 @@ Route::group(
             function () {
                 Route::get('logout', 'AuthController@logout');
                 Route::get('user', 'AuthController@user');
-                Route::get(
+                Route::post(
                     'recipes',
-                    function () {
-                        return RecipeResource::collection(Recipe::paginate(15));
+                    function (Request $request) {
+                        $filtered = RecipeResource::collection(Recipe::where('label', 'like', '%' . $request['query'] . '%')->get());
+                        $recipesForList = $filtered->all();
+                        return $recipesForList;
                     }
                 );
                 Route::get(

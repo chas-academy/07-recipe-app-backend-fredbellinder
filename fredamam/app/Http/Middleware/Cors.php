@@ -22,12 +22,12 @@ class Cors
     }
     
 
-    public function terminate($request, $response)
-    {
-        // header('Access-Control-Allow-Origin: *');
-        // header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
-        // header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Accept'); // allow certain headers
+    // public function terminate($request, Closure $next)
+    // {
+    //     // header('Access-Control-Allow-Origin: *');
+    //     // header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    //     // header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Accept'); // allow certain headers
 
-        return $next($request);
-    }
+    //     return $next($request);
+    // }
 }
