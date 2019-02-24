@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRecipeList extends Migration
+class CreateRecipesLists extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateRecipeList extends Migration
     public function up()
     {
         Schema::create(
-            'recipe_lists',
+            'recipes_lists',
             function (Blueprint $table) {
                 $table->integer('user_id')->unsigned();
                 $table->integer('recipe_id')->unsigned();
@@ -33,6 +33,6 @@ class CreateRecipeList extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recipe_lists');
+        Schema::dropIfExists('recipes_lists');
     }
 }

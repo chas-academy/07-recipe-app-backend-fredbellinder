@@ -44,12 +44,9 @@ Route::group(
                         return new RecipeResource(Recipe::find($id));
                     }
                 );
-                Route::post(
-                    'recipes/{id}',
-                    function ($id) {
-                        return new RecipeResource(Recipe::find($id));
-                    }
-                );
+                Route::post('recipe-list/add', 'RecipesListController@store');
+                Route::get('recipe-list', 'RecipesListController@index');
+                Route::delete('recipe-list/{recipe_id}', 'RecipesListController@destroy');
             }
         );
     }
