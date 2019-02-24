@@ -27,6 +27,10 @@ class Recipe extends Model
         'updated_at'
     ];
 
+    public function recipe_lists()
+    {
+        return $this->belongsToMany(RecipeList::class);
+    }
 
     // public $timestamps = false;
 }

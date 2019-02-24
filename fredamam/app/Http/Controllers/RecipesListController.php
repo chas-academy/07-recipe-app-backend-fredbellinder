@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\RecipesList;
+use App\Recipe;
 use Illuminate\Http\Request;
+use App\Http\Resources\RecipesList as RecipesListResource;
+use App\Http\Resources\Recipe as RecipeResource;
 
 class RecipesListController extends Controller
 {
@@ -12,9 +15,20 @@ class RecipesListController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user_id = $request->user()->id;
+        $collection = RecipesListResource::collection(RecipesList::where('user_id', $user_id)->get());
+        $results = $collection->all();
+        $sender=[];
+        foreach ($results as $result) {
+            array_push($sender, $result['recipe_id']);
+        }
+
+
+        $filtered = RecipeResource::collection(Recipe::whereIn('id', $sender)->get());
+        $recipesForList = $filtered->all();
+        return $recipesForList;
     }
 
     /**
@@ -35,7 +49,31 @@ class RecipesListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = $request->user()->id;
+        
+        $listItem = new RecipesList(
+            [
+            'user_id' => $user_id,
+            'recipe_id' => $request['recipe_id'],
+            // 'created_at' => now(),
+            // 'created_at' => now(),
+            ]
+        );
+        $listItem->save();
+
+        // $collection = RecipesListResource::collection(RecipesList::where('user_id', $user_id)->get());
+        // $results = $collection->all();
+        // $sender=[];
+        // foreach ($results as $result) {
+        //     array_push($sender, $result['recipe_id']);
+        // }
+
+
+        // $filtered = RecipeResource::collection(Recipe::whereIn('id', $sender)->get());
+        // $recipesForList = $filtered->all();
+        // return $recipesForList;
+
+        // RecipesList::where('user_id', $user_id)->all()->get();
     }
 
     /**
@@ -78,8 +116,11 @@ class RecipesListController extends Controller
      * @param  \App\RecipesList  $recipesList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RecipesList $recipesList)
+    public function destroy(Request $request)
     {
-        //
+        $recipe_id = $request['recipe_id'];
+        $user_id = $request->user()->id;
+
+        RecipesList::where('user_id', $user_id)->where('recipe_id', $recipe_id)->delete();
     }
 }

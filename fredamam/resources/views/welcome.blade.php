@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        {{-- <meta name="csrf_token" content="{{csrf_token}}"> --}}
         <title>Recipe</title>
 
         <!-- Fonts -->
@@ -84,6 +84,11 @@
                     Recipe API
                 </div>
             </div>
+        </div>
+        <div id="app">
+            <passport-clients></passport-clients>
+            <passport-authorized-clients></passport-authorized-clients>
+            <passport-personal-access-tokens></passport-personal-access-tokens>
         </div>
     </body>
 </html>

@@ -26,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Resource::withoutWrapping();
+        // Recipe::withoutWrapping(); -> CORS problem
     }
 }

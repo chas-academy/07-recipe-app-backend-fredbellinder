@@ -16,7 +16,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::paginate(15);
+        $recipes = Recipe::paginate(40);
 
         return RecipeResource::collection($recipes);
     }
@@ -50,7 +50,6 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
